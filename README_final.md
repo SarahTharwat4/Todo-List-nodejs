@@ -31,3 +31,36 @@ You can pull and run the image like this:
 ```bash
 docker pull loop0x800/todo-app
 docker run -p 3000:3000 loop0x800/todo-app
+
+__________________________________________________________________________________________________
+
+# Part 2 – Ansible
+
+## 🔧 Files
+
+- `docker-setup.yml`: Ansible playbook to install Docker on remote Ubuntu VM.
+- `inventory.ini.example`: Sample inventory file with VM IP and SSH config.
+
+## ✅ Requirements
+
+- Ubuntu VM with SSH access (tested on 24.04).
+- Ansible installed on the local machine.
+
+## 🚀 How to Use
+
+```bash
+cp inventory.ini.example inventory.ini
+ansible-playbook -i inventory.ini docker-setup.yml
+ansible -i inventory.ini my_vm -a "docker --version"
+
+
+
+
+
+
+
+
+
+
+
+
