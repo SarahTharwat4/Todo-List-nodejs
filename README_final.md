@@ -33,51 +33,38 @@ docker pull loop0x800/todo-app
 docker run -p 3000:3000 loop0x800/todo-app
 
 __________________________________________________________________________________________________
-# ✅ Todo App - DevOps Track (Part 2 Completed)
-
-## 🔧 Project Summary:
-
-This part focuses on using Ansible to remotely install Docker on a Linux VM.
-
-- Created a local Ubuntu VM (via VirtualBox)
-- Configured SSH access to the VM
-- Used Ansible from host machine to:
-  - Install Docker
-  - Enable and start Docker service
-  - Verify installation
-
----
-
-## 📝 Tasks Completed:
-
-- ✅ Created Ubuntu VM with SSH access
-- ✅ Created Ansible inventory file
-- ✅ Wrote `docker-setup.yml` playbook
-- ✅ Installed Docker remotely using Ansible
-- ✅ Verified Docker installation
-
----
-
-## 📂 Files Included:
-
-- `docker-setup.yml`: Playbook to install and start Docker
-- `inventory.ini.example`: Sample inventory with SSH config
-
----
-
-## 🚀 How to Run:
-
-```bash
-cp inventory.ini.example inventory.ini
-ansible-playbook -i inventory.ini docker-setup.yml
-ansible -i inventory.ini my_vm -a "docker --version"
 
 
-📋 Result:
-192.168.42.106 | SUCCESS | rc=0 >>
-Docker version 24.0.5, build ced0996
 
+✅ Todo App - DevOps Track (Part 2 Completed)
+🧰 Tasks:
+✅ Created a Linux VM
 
+✅ Installed Docker using Ansible
+
+✅ Pulled the Docker image inside the VM
+
+✅ Handled architecture mismatch by rebuilding the image from source
+
+✅ Fixed environment variable issues
+
+✅ Ran the container successfully on port 4000
+
+⚙️ Run Details:
+Container started successfully on the VM at:
+
+http://192.168.42.106:4000
+
+To test it :
+curl http://192.168.42.106:4000
+📂 Notes:
+Used Ansible playbook to automate Docker installation
+
+Rebuilt the image manually inside the VM to match system architecture
+
+Created and used .env file to inject environment variables
+
+Exposed correct port (4000) and verified the app is running via browser and curl
 
 
 
