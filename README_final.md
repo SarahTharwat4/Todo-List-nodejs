@@ -33,20 +33,39 @@ docker pull loop0x800/todo-app
 docker run -p 3000:3000 loop0x800/todo-app
 
 __________________________________________________________________________________________________
+# ✅ Todo App - DevOps Track (Part 2 Completed)
 
-# Part 2 – Ansible
+## 🔧 Project Summary:
 
-## 🔧 Files
+This part focuses on using Ansible to remotely install Docker on a Linux VM.
 
-- `docker-setup.yml`: Ansible playbook to install Docker on remote Ubuntu VM.
-- `inventory.ini.example`: Sample inventory file with VM IP and SSH config.
+- Created a local Ubuntu VM (via VirtualBox)
+- Configured SSH access to the VM
+- Used Ansible from host machine to:
+  - Install Docker
+  - Enable and start Docker service
+  - Verify installation
 
-## ✅ Requirements
+---
 
-- Ubuntu VM with SSH access (tested on 24.04).
-- Ansible installed on the local machine.
+## 📝 Tasks Completed:
 
-## 🚀 How to Use
+- ✅ Created Ubuntu VM with SSH access
+- ✅ Created Ansible inventory file
+- ✅ Wrote `docker-setup.yml` playbook
+- ✅ Installed Docker remotely using Ansible
+- ✅ Verified Docker installation
+
+---
+
+## 📂 Files Included:
+
+- `docker-setup.yml`: Playbook to install and start Docker
+- `inventory.ini.example`: Sample inventory with SSH config
+
+---
+
+## 🚀 How to Run:
 
 ```bash
 cp inventory.ini.example inventory.ini
@@ -54,6 +73,9 @@ ansible-playbook -i inventory.ini docker-setup.yml
 ansible -i inventory.ini my_vm -a "docker --version"
 
 
+📋 Result:
+192.168.42.106 | SUCCESS | rc=0 >>
+Docker version 24.0.5, build ced0996
 
 
 
