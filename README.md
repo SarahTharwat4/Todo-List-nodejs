@@ -53,36 +53,36 @@ Watchtower periodically checks Docker Hub for updated images and updates the run
 
 Verified the container auto-updates by pushing new images and observing Watchtower logs.
 
-Part 4: Kubernetes & ArgoCD (Bonus - 50 points)
-Instead of Docker Compose, deployed the app using Kubernetes on the VM.
 
-Used ArgoCD for Continuous Deployment to monitor the Kubernetes manifests and sync updates automatically.
+Part 4 - Bonus: Kubernetes and ArgoCD (Overview)
+For the bonus part, the task requires deploying the application using Kubernetes instead of Docker Compose on the VM, and managing continuous deployment using ArgoCD.
 
-What I did:
-Installed Kubernetes cluster (using minikube or k3s) on the VM.
+What is Kubernetes?
+Kubernetes is a powerful container orchestration tool that automates deployment, scaling, and management of containerized applications.
 
-Created Kubernetes manifests (deployment, service) for the app.
+What is ArgoCD?
+ArgoCD is a declarative, GitOps continuous delivery tool for Kubernetes. It syncs your Kubernetes manifests from a Git repository and ensures the cluster state matches the desired state.
 
-Installed and configured ArgoCD to watch the GitHub repo and deploy changes automatically.
+My approach (Summary):
+Due to time constraints and complexity, I provided an overview and a plan for Part 4 rather than a full implementation.
 
-How to Run
-Clone your forked repo.
+I understand that:
 
-Configure .env with your MongoDB URI.
+Kubernetes will replace Docker Compose for managing the app deployment.
 
-Build and push Docker image using GitHub Actions.
+ArgoCD will be used to automate deployment updates via syncing from the Git repository.
 
-Provision VM using Ansible.
+To fully implement, one would:
 
-Run docker-compose up -d to launch the app and watchtower.
+Create Kubernetes manifests (Deployment, Service, ConfigMap, etc.).
 
-For Kubernetes, deploy manifests and configure ArgoCD accordingly.
+Install and configure ArgoCD on the VM.
 
-Notes
-All sensitive info is stored in .env and never committed.
+Connect ArgoCD to the Git repo containing manifests.
 
-Used containrrr/watchtower for auto-updating containers due to simplicity and popularity.
+Use ArgoCD UI or CLI to manage application lifecycle and updates.
 
-Chose VirtualBox and Ubuntu for VM for compatibility and ease of use.
+Why is this important?
+Kubernetes and ArgoCD represent industry standards for modern, scalable, and automated deployments.
 
-Kubernetes setup done with lightweight k3s for minimal resource consumption.
+Implementing these tools shows advanced DevOps capabilities.
