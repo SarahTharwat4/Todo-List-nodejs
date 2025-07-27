@@ -1,75 +1,82 @@
-# ✅ Todo App - DevOps Track (Part 1 Completed)
 
-## 🔧 Project Summary:
+🛠️ DevOps Internship Assessment - Todo List App
+📌 Overview
+This project demonstrates my understanding of core DevOps practices using a simple Todo List web application.
+The app was dockerized, deployed on a VM using Ansible and Docker Compose, and configured to auto-update using Watchtower.
 
-This is a Node.js Todo List App that was:
-- Dockerized using a custom `Dockerfile`
-- Connected to MongoDB Atlas using `.env`
-- Pushed to Docker Hub
-- Built and tested locally
+💡 I used ChatGPT as a learning assistant to help guide me through the process, but all implementations were done by me.
 
----
+📚 Table of Contents
+Part 1: Docker & GitHub Actions CI
 
-## 📝 Tasks Completed:
+Part 2: Ansible VM Setup
 
-- ✅ Setup project & dependencies
-- ✅ Connected to MongoDB Atlas via environment variables
-- ✅ Created `Dockerfile`
-- ✅ Built Docker image locally
-- ✅ Logged in to Docker Hub from terminal
-- ✅ Pushed Docker image manually to Docker Hub
-- ✅ Tested image with `docker run`
+Part 3: Docker Compose & Auto Updates
 
----
+✅ Part 1: Docker & GitHub Actions CI
+Forked the original repo: Ankit6098/Todo-List-nodejs
 
-## 📤 Docker Hub Image:
+Added a Dockerfile to containerize the application.
 
-👉 [Click here to view image on Docker Hub](https://hub.docker.com/repository/docker/loop0x800/todo-app)
+Created a private DockerHub repo.
 
-You can pull and run the image like this:
+Configured GitHub Actions to:
 
-```bash
-docker pull loop0x800/todo-app
-docker run -p 3000:3000 loop0x800/todo-app
+Build the Docker image on push.
 
-__________________________________________________________________________________________________
+Push the image to DockerHub automatically.
 
+📂 Main File:
 
+bash
+Copy
+Edit
+.github/workflows/docker-image.yml
+⚙️ Part 2: Ansible VM Setup
+Created an Ubuntu VM using VirtualBox.
 
-✅ Todo App - DevOps Track (Part 2 Completed)
-🧰 Tasks:
-✅ Created a Linux VM
+Connected via SSH from my local machine.
 
-✅ Installed Docker using Ansible
+Used Ansible from local to:
 
-✅ Pulled the Docker image inside the VM
+Install Docker & Docker Compose.
 
-✅ Handled architecture mismatch by rebuilding the image from source
+Prepare the machine for deployment.
 
-✅ Fixed environment variable issues
+📂 Files:
 
-✅ Ran the container successfully on port 4000
+inventory.ini – Contains VM IP.
 
-⚙️ Run Details:
-Container started successfully on the VM at:
+playbook.yml – Ansible playbook for provisioning.
 
-http://192.168.42.106:4000
+🔄 Part 3: Docker Compose & Auto Updates
+Deployed the app and Watchtower using docker-compose.yml.
 
-To test it :
-curl http://192.168.42.106:4000
-📂 Notes:
-Used Ansible playbook to automate Docker installation
+Added healthcheck to the app container.
 
-Rebuilt the image manually inside the VM to match system architecture
+Watchtower monitors DockerHub for new image versions and auto-pulls updates every 30 seconds.
 
-Created and used .env file to inject environment variables
+📂 Snippet from docker-compose.yml:
 
-Exposed correct port (4000) and verified the app is running via browser and curl
+yaml
+Copy
+Edit
+watchtower:
+  image: containrrr/watchtower
+  volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+  command: --interval 30
+✅ I tested auto-update by pushing a new image version to DockerHub. Watchtower detected it and redeployed the updated container successfully.
 
+🧰 Tools & Technologies
+Docker & Docker Compose
 
+GitHub Actions
 
+DockerHub
 
+Ansible
 
+Watchtower
 
-
-
+VirtualBox (Local VM)
