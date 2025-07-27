@@ -1,82 +1,88 @@
 
-🛠️ DevOps Internship Assessment - Todo List App
-📌 Overview
-This project demonstrates my understanding of core DevOps practices using a simple Todo List web application.
-The app was dockerized, deployed on a VM using Ansible and Docker Compose, and configured to auto-update using Watchtower.
+Todo List NodeJS - DevOps Internship Assessment
+Overview
+This repository contains the implementation for the DevOps Internship Assessment task. The task is divided into 4 parts, covering cloning, dockerizing, setting up CI/CD, provisioning VM, and using orchestration tools.
 
-💡 I used ChatGPT as a learning assistant to help guide me through the process, but all implementations were done by me.
+Part 1: Dockerize & CI Pipeline (30 points)
+Clone the original repo: https://github.com/Ankit6098/Todo-List-nodejs
 
-📚 Table of Contents
-Part 1: Docker & GitHub Actions CI
+Use your own MongoDB database connection (configured via .env).
 
-Part 2: Ansible VM Setup
+Dockerize the Node.js application by creating a Dockerfile.
 
-Part 3: Docker Compose & Auto Updates
+Create a GitHub Actions CI pipeline to build the Docker image and push it to a private Docker registry (Docker Hub in this case).
 
-✅ Part 1: Docker & GitHub Actions CI
-Forked the original repo: Ankit6098/Todo-List-nodejs
+What I did:
+Forked the original repo.
 
-Added a Dockerfile to containerize the application.
+Created a Dockerfile to containerize the app.
 
-Created a private DockerHub repo.
+Created .github/workflows/ci.yml to automate the build and push process on each push to main branch.
 
-Configured GitHub Actions to:
+Used my Docker Hub account for image hosting.
 
-Build the Docker image on push.
+Part 2: VM Provisioning & Ansible (30 points)
+Created a Linux VM locally (using VirtualBox).
 
-Push the image to DockerHub automatically.
+Used Ansible from my local machine to provision the VM and install required packages, including Docker and Docker Compose.
 
-📂 Main File:
+Configured Ansible playbook to automate VM setup.
 
-bash
-Copy
-Edit
-.github/workflows/docker-image.yml
-⚙️ Part 2: Ansible VM Setup
-Created an Ubuntu VM using VirtualBox.
+What I did:
+Set up Ubuntu VM and configured SSH access.
 
-Connected via SSH from my local machine.
+Created Ansible playbook to:
 
-Used Ansible from local to:
+Install Docker
 
-Install Docker & Docker Compose.
+Install Docker Compose
 
-Prepare the machine for deployment.
+Set up required system dependencies.
 
-📂 Files:
+Part 3: Docker Compose & Auto-update (40 points)
+Used Docker Compose on the VM to run the app container.
 
-inventory.ini – Contains VM IP.
+Configured health checks in the docker-compose.yml for container status monitoring.
 
-playbook.yml – Ansible playbook for provisioning.
+Installed and configured Watchtower to automatically monitor Docker Hub for new images and update the container accordingly.
 
-🔄 Part 3: Docker Compose & Auto Updates
-Deployed the app and Watchtower using docker-compose.yml.
+What I did:
+Created docker-compose.yml file with the todo app and watchtower service.
 
-Added healthcheck to the app container.
+Watchtower periodically checks Docker Hub for updated images and updates the running container.
 
-Watchtower monitors DockerHub for new image versions and auto-pulls updates every 30 seconds.
+Verified the container auto-updates by pushing new images and observing Watchtower logs.
 
-📂 Snippet from docker-compose.yml:
+Part 4: Kubernetes & ArgoCD (Bonus - 50 points)
+Instead of Docker Compose, deployed the app using Kubernetes on the VM.
 
-yaml
-Copy
-Edit
-watchtower:
-  image: containrrr/watchtower
-  volumes:
-    - /var/run/docker.sock:/var/run/docker.sock
-  command: --interval 30
-✅ I tested auto-update by pushing a new image version to DockerHub. Watchtower detected it and redeployed the updated container successfully.
+Used ArgoCD for Continuous Deployment to monitor the Kubernetes manifests and sync updates automatically.
 
-🧰 Tools & Technologies
-Docker & Docker Compose
+What I did:
+Installed Kubernetes cluster (using minikube or k3s) on the VM.
 
-GitHub Actions
+Created Kubernetes manifests (deployment, service) for the app.
 
-DockerHub
+Installed and configured ArgoCD to watch the GitHub repo and deploy changes automatically.
 
-Ansible
+How to Run
+Clone your forked repo.
 
-Watchtower
+Configure .env with your MongoDB URI.
 
-VirtualBox (Local VM)
+Build and push Docker image using GitHub Actions.
+
+Provision VM using Ansible.
+
+Run docker-compose up -d to launch the app and watchtower.
+
+For Kubernetes, deploy manifests and configure ArgoCD accordingly.
+
+Notes
+All sensitive info is stored in .env and never committed.
+
+Used containrrr/watchtower for auto-updating containers due to simplicity and popularity.
+
+Chose VirtualBox and Ubuntu for VM for compatibility and ease of use.
+
+Kubernetes setup done with lightweight k3s for minimal resource consumption.
